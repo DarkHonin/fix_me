@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="fix_me.AppTest" time="0.146" tests="1" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="sun.desktop" value="windows"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.specification.version" value="11"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\Honin\Documents\Code\WTC Java\fix-me\target\test-classes;C:\Users\Honin\Documents\Code\WTC Java\fix-me\target\classes;C:\Users\Honin\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Honin\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="java.vm.vendor" value="AdoptOpenJDK"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://adoptopenjdk.net/"/>
+    <property name="user.timezone" value="Africa/Harare"/>
+    <property name="java.vm.specification.version" value="11"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\AdoptOpenJDK\jdk-11.0.7.10-hotspot\bin"/>
+    <property name="sun.java.command" value="C:\msys64\tmp\surefire5701502716341107396\surefirebooter73966194553534108.jar C:\msys64\tmp\surefire5701502716341107396 2020-05-10T15-34-15_230-jvmRun1 surefire6404639721254181185tmp surefire_011850638726645466684tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\Honin\Documents\Code\WTC Java\fix-me\target\test-classes;C:\Users\Honin\Documents\Code\WTC Java\fix-me\target\classes;C:\Users\Honin\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Honin\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\Honin"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2020-04-14"/>
+    <property name="java.home" value="C:\Program Files\AdoptOpenJDK\jdk-11.0.7.10-hotspot"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\Honin\Documents\Code\WTC Java\fix-me"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="C:\msys64\tmp\surefire5701502716341107396\surefirebooter73966194553534108.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="11.0.7+10"/>
+    <property name="user.name" value="Honin"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="AdoptOpenJDK"/>
+    <property name="localRepository" value="C:\Users\Honin\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/AdoptOpenJDK/openjdk-support/issues"/>
+    <property name="java.io.tmpdir" value="C:\msys64\tmp\"/>
+    <property name="java.version" value="11.0.7"/>
+    <property name="user.dir" value="C:\Users\Honin\Documents\Code\WTC Java\fix-me"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.library.path" value="C:\Program Files\AdoptOpenJDK\jdk-11.0.7.10-hotspot\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\msys64\mingw64\bin;C:\msys64\usr\local\bin;C:\msys64\usr\bin;C:\msys64\usr\bin;C:\Program Files\AdoptOpenJDK\jdk-11.0.7.10-hotspot\bin;C:\Program Files (x86)\Microchip\mplabc18\v3.47\mpasm;C:\Program Files (x86)\Microchip\mplabc18\v3.47\bin;C:\Python37\Scripts;C:\Python37;C:\ProgramData\Boxstarter;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client;C:\Program Files\Intel\iCLS Client;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\MAMP\bin\php\php7.1.5;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit;C:\Program Files\dotnet;C:\MinGW\bin;C:\Program%20Files\Git\cmd;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Microsoft VS Code\bin;C:\Program Files (x86)\GnuWin32\bin;C:\Program Files\PuTTY;C:\ProgramData\chocolatey\bin;C:\Program Files\MongoDB\Server\4.0\bin;C:\Program Files\nodejs;C:\dart-sass;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\CMake\bin;C:\Program Files\Git\cmd;C:\Program Files\Intel\WiFi\bin;C:\Program Files\Common Files\Intel\WirelessCommon;C:\Program Files\PowerShell\7-preview\preview;C:\ProgramData\ComposerSetup\bin;C:\Program Files (x86)\Heimdal\bin;C:\Program Files\Heimdal\bin;C:\Program Files (x86)\QT Lite\QTSystem;C:\Program Files\Amazon\AWSCLI\bin;C:\Users\Honin\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Users\Honin\AppData\Local\Programs\Python\Python36-32;C:\Users\Honin\AppData\Local\Microsoft\WindowsApps;C:\Users\Honin\AppData\Local\Programs\Microsoft VS Code\bin;C:\php;C:\Users\Honin\AppData\Roaming\npm;C:\Program Files\heroku\bin;C:\Users\Honin\AppData\Local\Microsoft\WindowsApps;C:\Users\Honin\.local\bin;C:\Program Files\Docker Toolbox;C:\msys64\usr\bin\site_perl;C:\msys64\usr\bin\vendor_perl;C:\msys64\usr\bin\core_perl;."/>
+    <property name="java.vendor" value="AdoptOpenJDK"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vm.version" value="11.0.7+10"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="55.0"/>
+  </properties>
+  <testcase name="shouldAnswerWithTrue" classname="fix_me.AppTest" time="0.007"/>
+</testsuite>

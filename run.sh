@@ -1,0 +1,1 @@
+java -cp target/fix_me-1.jar fix_me.App
