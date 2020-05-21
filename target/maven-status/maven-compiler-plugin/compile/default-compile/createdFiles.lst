@@ -1,3 +1,4 @@
-dealers\Dealer.class
+dealers\Router$Acceptor.class
 dealers\Router.class
+dealers\Dealer.class
 fix_me\App.class

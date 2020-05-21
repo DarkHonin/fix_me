@@ -53,18 +53,18 @@ public class Dealer implements Runnable {
 	}
 
 	public void close(){
-		System.out.println("Shutting down "+toString()+" : " + socket.toString());
 		if(isRunning()) service.shutdownNow();
-		System.out.println("\tService offline");
 		if(isConnected())
 			try {
 				socket.close();
-				System.out.println("\tSocket offline");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println("Closed "+toString());
 	}
+
+	void messageRecieved(){}
 
 	@Override
 	public void run(){
