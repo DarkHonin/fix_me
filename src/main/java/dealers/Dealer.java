@@ -2,6 +2,7 @@ package dealers;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
@@ -30,6 +31,7 @@ public class Dealer implements Runnable {
 	private void connect() {
 		try {
 			socket = SocketChannel.open(new InetSocketAddress(Host, Port));
+			socket.configureBlocking(false);
 			System.out.println(toString()+", opening connection: " + socket.toString());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -49,7 +51,7 @@ public class Dealer implements Runnable {
 	public void open(){
 		if(!isConnected())	connect();
 		System.out.println("Running "+toString()+" thread");
-		service.execute((Runnable) this);
+		service.execute(this);
 	}
 
 	public void close(){
@@ -64,11 +66,30 @@ public class Dealer implements Runnable {
 			System.out.println("Closed "+toString());
 	}
 
-	void messageRecieved(){}
+	void messageRecieved(String e){
+		System.out.println(toString() + " :Message recieved: " + e);
+	}
 
 	@Override
 	public void run(){
+		String message = "";
+		while(isConnected()){
+			try {
+				ByteBuffer buff = ByteBuffer.allocate(255);	// Buffer alloc
+				while(socket.read(buff) > 0){
+					message += new String(buff.array());
+					buff.clear();
+				}
+				if(message != ""){
+					messageRecieved(message);
+					message = "";
+				}
 
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public static void closeAll(){

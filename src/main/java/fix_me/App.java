@@ -22,6 +22,7 @@ public class App {
         System.out.println("Press any key to close");
         try {
             while(System.in.read() < 1);
+            System.out.println("Closing ...");
             r.close();
             Dealer.closeAll();
             System.exit(0);

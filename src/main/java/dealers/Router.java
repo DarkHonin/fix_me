@@ -8,6 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.ExecutorService;
@@ -37,6 +38,7 @@ public class Router {
 				while (server.isOpen()) {
 					SocketChannel chanel;
 					if ((chanel = server.accept()) != null) {
+						while(!chanel.finishConnect());
 						router.accept(chanel, port);
 					}
 				}
@@ -61,22 +63,27 @@ public class Router {
 		service = Executors.newFixedThreadPool(2);	// Max 10 threads concurrent
 	}
 
-	protected static void brokerConnected(SocketChannel channel){
-		System.out.println("Broker connected: " + Integer.toString(channel.hashCode()));
-	}
-
-	protected static void marketConnected(SocketChannel channel){
-		Markets.put(channel.hashCode(), channel);
-	}
-
 	protected void accept(SocketChannel channel, int port){
-		System.out.println(Integer.toString(port) + " : Connection made: " + Integer.toString(channel.hashCode()));
+		int id = genID();
+		System.out.println(Integer.toString(port) + " : Connection made: " + Integer.toString(id));
+
+		sendMessage(channel, "ID=" + Integer.toString(id));
 		if(port == 5000){	// Connected to broker
-			Brokers.put(channel.hashCode(), channel);
-			// Handshake
+			Brokers.put(id, channel);
 		}if(port == 5001){
-			Markets.put(channel.hashCode(), channel);
-			// Handshake
+			Markets.put(id, channel);
+		}
+	}
+
+	protected void sendMessage(SocketChannel ch, String message){
+		System.out.println("Sending message: " + message);
+		try {
+			ByteBuffer buff = ByteBuffer.wrap(message.getBytes());
+			while(buff.hasRemaining())
+				ch.write(buff);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -94,6 +101,15 @@ public class Router {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	Random rgen = new Random();
+
+	private int genID(){
+		int ret = 0;
+		for(int x = 0; x < 6;x++)
+			ret += rgen.nextInt(9) * (Math.pow(10, x));
+		return ret;
 	}
 
 }
