@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
-
 public class Dealer implements Runnable {
 	private static ArrayList<Dealer>	dealers = new ArrayList<Dealer>();	// Dealers
 
@@ -68,6 +66,18 @@ public class Dealer implements Runnable {
 
 	void messageRecieved(String e){
 		System.out.println(toString() + " :Message recieved: " + e);
+	}
+
+	protected void sendMessage(SocketChannel ch, String message){
+		System.out.println("Sending message: " + message);
+		try {
+			ByteBuffer buff = ByteBuffer.wrap(message.getBytes());
+			while(buff.hasRemaining())
+				ch.write(buff);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
