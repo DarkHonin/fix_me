@@ -13,10 +13,11 @@ import java.util.Random;
 
 public class Router implements NetCatchAcceptor, NetAcceptor {
 	NetCatchWorker brokerWorker, marketWorker;
-
+	private Random e;
 	HashMap<Integer, NetWorker> Brokers, Markets;
 
 	public Router() {
+		e = new Random(this.hashCode());
 		brokerWorker = new NetCatchWorker(5000);
 		marketWorker = new NetCatchWorker(5001);
 		brokerWorker.setAcceptor(this);
@@ -65,7 +66,7 @@ public class Router implements NetCatchAcceptor, NetAcceptor {
 	}
 
 	int genID(){
-		Random e = new Random(this.hashCode());
+
 		int ret = 0;
 		for(int i = 0; i < 6; i++){
 			ret += e.nextInt(9) * Math.pow(10, i);

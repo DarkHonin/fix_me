@@ -40,12 +40,9 @@ public abstract class SimWorker implements Runnable {
 	public void run() {
 		System.out.println("Starting " + this);
 		running = true;
-		try {
-			while (running && work()) wait(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+			while (running && work());
+
 		running = false;
 		System.out.println("Stopping " + this);
 		shutdown();

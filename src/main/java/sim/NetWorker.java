@@ -1,7 +1,7 @@
 package sim;
 
-
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.Executors;
@@ -24,14 +24,14 @@ public class NetWorker extends SimWorker {
 
 	@Override
 	protected boolean work() {
-		if(!channel.isConnected())
-			return false;
-		// Listen for messages
-		int readLen = 0;
 		try {
+			if(!channel.finishConnect())
+				return true;
+
+
+			// Listen for messages
+			int readLen = 0;
 			if ((readLen = channel.read(buffer)) != 0) {
-				System.out.println(this.toString() + " : Message recieved : " + Integer.toString(readLen));
-				System.out.println(new String(buffer.array()));
 				if(acceptor != null)
 					acceptor.acceptMessage(this, new String(buffer.array()));
 			}

@@ -11,16 +11,11 @@ public class App {
     public static void main(String[] args) {
         Router router = new Router();
         router.open();
-        try {
-            SocketChannel c = SocketChannel.open(new InetSocketAddress("localhost", 5000));
-            while(!c.isConnected());
-            NetWorker w = new NetWorker(c);
-            w.start();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
 
+        Market m = new Market();
+        Broker b = new Broker();
+        m.start();
+        b.start();
 
         // Router r = new Router();
         // Dealer d = new Dealer("localhost", 5000);

@@ -36,6 +36,7 @@ public class NetCatchWorker extends SimWorker {
 	protected boolean work() {
 		SocketChannel ch = null;
 		try {
+			// System.out.println(this + " : Awaiting connect");
 			if ((ch = server.accept()) != null) {
 				System.out.println(this + " : Connected to : " + ch );
 				if(acceptor != null) acceptor.acceptSocket(this, ch);
