@@ -2,7 +2,6 @@ package fix_me;
 
 import java.io.IOException;
 import java.nio.channels.SocketChannel;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import sim.NetCatchWorker;
@@ -55,7 +54,6 @@ public class Router implements NetCatchAcceptor, NetAcceptor {
 				Markets.put(id, c);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -64,7 +62,7 @@ public class Router implements NetCatchAcceptor, NetAcceptor {
 	public void acceptMessage(NetWorker instance, String message) {
 		System.out.println("Router recieved: " + message);
 		System.out.println("\t From: " + instance);
-		// To-Do Parse and do logic...
+		// TODO Parse and do logic...
 	}
 
 	int genID(){

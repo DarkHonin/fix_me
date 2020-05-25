@@ -1,7 +1,6 @@
 package sim;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.Executors;
@@ -30,13 +29,11 @@ public class NetWorker extends SimWorker {
 
 
 			// Listen for messages
-			int readLen = 0;
-			if ((readLen = channel.read(buffer)) != 0) {
+			if (( channel.read(buffer)) != 0) {
 				if(acceptor != null)
 					acceptor.acceptMessage(this, new String(buffer.array()));
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return true;
@@ -47,7 +44,6 @@ public class NetWorker extends SimWorker {
 		try {
 			channel.write(buffer);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -61,7 +57,6 @@ public class NetWorker extends SimWorker {
 		try {
 			channel.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

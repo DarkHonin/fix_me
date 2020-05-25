@@ -3,7 +3,6 @@ package fix_me;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import sim.NetWorker;
@@ -37,7 +36,6 @@ public class Broker extends SimWorker implements NetAcceptor {
 				System.out.println(this + " : Connection complete");
 				return true;
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -51,14 +49,14 @@ public class Broker extends SimWorker implements NetAcceptor {
 
 	@Override
 	protected void shutdown() {
-		// TODO Auto-generated method stub
+		worker.stop();
 
 	}
 
 	@Override
 	public void acceptMessage(NetWorker instance, String message) {
 		System.out.println(this + " : Message : " + message);
-		// To-Do Parse and do logic...
+		// TODO Parse and do logic...
 	}
 
 }
