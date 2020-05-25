@@ -58,7 +58,7 @@ public class Market extends SimWorker implements NetAcceptor {
 	@Override
 	public void acceptMessage(NetWorker instance, String message) {
 		System.out.println(this + " : Message : " + message);
-
+		// To-Do Parse and do logic...
 	}
 
 }

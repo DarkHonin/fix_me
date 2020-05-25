@@ -62,7 +62,9 @@ public class Router implements NetCatchAcceptor, NetAcceptor {
 
 	@Override
 	public void acceptMessage(NetWorker instance, String message) {
-
+		System.out.println("Router recieved: " + message);
+		System.out.println("\t From: " + instance);
+		// To-Do Parse and do logic...
 	}
 
 	int genID(){
