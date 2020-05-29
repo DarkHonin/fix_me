@@ -59,4 +59,9 @@ public class Broker extends SimWorker implements NetAcceptor {
 		// TODO Parse and do logic...
 	}
 
+	@Override
+	public NetWorker getWorker() {
+		return worker;
+	}
+
 }

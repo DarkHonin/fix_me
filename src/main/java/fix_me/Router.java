@@ -44,13 +44,11 @@ public class Router implements NetCatchAcceptor, NetAcceptor {
 			NetWorker c = new NetWorker(ch);
 			c.start();
 			c.setAcceptor(this);
-			c.send( Integer.toString(id));
+			c.send(Integer.toString(id));
 			if (instance == brokerWorker) {
-				System.out.println("Broker connection accepted, ID: " + Integer.toString(id));
 				Brokers.put(id, c);
 			}
 			if (instance == marketWorker) {
-				System.out.println("Market connection accepted, ID: " + Integer.toString(id));
 				Markets.put(id, c);
 			}
 		} catch (IOException e) {
@@ -72,5 +70,17 @@ public class Router implements NetCatchAcceptor, NetAcceptor {
 			ret += e.nextInt(9) * Math.pow(10, i);
 		}
 		return ret;
+	}
+
+	@Override
+	public NetWorker getWorker() {
+		return Brokers.get(0);
+	}
+
+	public NetWorker getMarketWorker(int id){
+		return Markets.get(id);
+	}
+	public NetWorker getBrokerWorker(int id){
+		return Brokers.get(id);
 	}
 }

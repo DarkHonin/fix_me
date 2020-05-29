@@ -38,8 +38,10 @@ public class NetCatchWorker extends SimWorker {
 		try {
 			// System.out.println(this + " : Awaiting connect");
 			if ((ch = server.accept()) != null) {
-				System.out.println(this + " : Connected to : " + ch );
-				if(acceptor != null) acceptor.acceptSocket(this, ch);
+				if(acceptor != null) {
+					System.out.println(this + " : Connected to : " + ch );
+					acceptor.acceptSocket(this, ch);
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -56,7 +58,9 @@ public class NetCatchWorker extends SimWorker {
 
 				e.printStackTrace();
 			}
-
 	}
 
+	public String toString() {
+		return super.toString()+ "[" + acceptor + "]";
+	}
 }
