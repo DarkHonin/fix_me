@@ -59,7 +59,7 @@ public class AppTest {
 
     NetAcceptorMonitor mon, mon2;
 
-    @Test
+    // @Test
     public void routerMessageRecieved() {
         marketConnected = Idrecieved = IdRespond = IdRespondRecieved = false;
 
