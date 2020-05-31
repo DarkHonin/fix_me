@@ -40,8 +40,12 @@ public abstract class SimWorker implements Runnable {
 	public void run() {
 		System.out.println("Starting " + this);
 		running = true;
-
+		try{
 			while (running && work());
+		}catch (Exception e){
+			e.printStackTrace();
+			stop();
+		}
 
 		running = false;
 		System.out.println("Stopping " + this);
