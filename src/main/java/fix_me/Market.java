@@ -1,93 +1,44 @@
 package fix_me;
 
-import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.nio.channels.SocketChannel;
-import java.util.concurrent.Executors;
+import java.util.HashMap;
+import java.util.Random;
 
+import message.FixMessage;
 import message.IDOption;
-import message.Option;
 import message.Option.eOption;
-import message.TypeOption.MessageType;
 import message.TypeOption;
-import message.Messages.HandshakeMessage;
-import sim.NetWorker;
-import sim.SimWorker;
-import sim.NetWorker.NetAcceptor;
+import message.TypeOption.MessageType;
 
-public class Market extends SimWorker implements NetAcceptor {
+public class Market extends FixWorker{
 
-	private NetWorker worker;
-	private SocketChannel channel;
-	int ID;
+	HashMap<String, Integer> InstrumentTable;
 
 	public Market() {
-		super(Executors.newSingleThreadExecutor(), "Market");
-		try {
-			channel = SocketChannel.open();
-			channel.configureBlocking(false);
-
-		} catch (IOException e) {
-			e.printStackTrace();
+		super("Market", 5001);
+		Random ran = new Random(InstrumentTable.hashCode());
+		for(int x = 0; x <= 10; x++){
+			String hexName = Integer.toHexString(x);
+			InstrumentTable.put(hexName, ran.nextInt(20));
 		}
 	}
 
 	@Override
-	protected boolean work() {
-		if(!channel.isConnected()){
-			try {
-				System.out.println(this + " : Attempting connect");
-				channel.connect(new InetSocketAddress("localhost", 5001));
-				channel.finishConnect();
-				worker = new NetWorker(channel);
-				worker.setAcceptor(this);
-				worker.start();
-				System.out.println(this + " : Connection complete");
-				return true;
-			} catch (IOException e) {
-				e.printStackTrace();
-				return false;
-			}
-		}
-		// Do super secret things here
-		return true;
+	String acceptBuy(FixMessage ms) {
+		// TODO buy
+		return null;
 	}
 
 	@Override
-	protected void shutdown() {
-		worker.stop();
-
+	String acceptSell(FixMessage ms) {
+		// TODO Sell
+		return null;
 	}
 
-	@Override
-	public void acceptMessage(NetWorker instance, String message) {
-		System.out.println(this + " : Confirm message recieved : " + message);
-		Option[] options = Option.parseOptions(message);
-		MessageType mt = TypeOption.extractType(options);
-
-		switch(mt){
-			case Handshake:
-				System.out.println("Message type: " + mt.name());
-				HandshakeMessage MSG = new HandshakeMessage(options);
-				if(!MSG.validate())
-				System.err.printf("%s : Failed to validate message", this);
-				else
-				System.out.println("Message validation OK");
-				System.out.println(MSG);
-				IDOption opt = MSG.getOption(eOption.ID);
-				ID = opt.getID();
-				System.out.printf("%s : ID assigned : %d\n", this, ID);
-				instance.send(MSG.toString());
-				break;
-		}
-
-		// tp.getType()
-		// TODO Parse and do logic...
-	}
-
-	@Override
-	public NetWorker getWorker() {
-		return worker;
+	void sell(String name, int n){
+		FixMessage msg = new FixMessage();
+		((IDOption) msg.getOption(eOption.ID)).setID(getID());
+		((TypeOption) msg.getOption(eOption.Type)).setType(MessageType.Sell);
+		getWorker().send(msg.toString());
 	}
 
 }

@@ -2,7 +2,6 @@ package message;
 
 import java.util.Arrays;
 import java.util.List;
-import message.Messages.*;
 
 public class TypeOption extends Option{
 
@@ -37,6 +36,10 @@ public class TypeOption extends Option{
 		type = MessageType.valueOf(e);
 	}
 
+	public void setType(MessageType t){
+		type = t;
+	}
+
 	public MessageType getType(){
 		return type;
 	}
@@ -49,8 +52,7 @@ public class TypeOption extends Option{
 			return false;
 		}
 
-		List<eOption> opts = Arrays.asList(new eOption[]{eOption.ID, eOption.Length, eOption.Type, eOption.Checksum});
-		opts.addAll(Arrays.asList(message().requiredOptions()));
+		List<eOption> opts = Arrays.asList(new eOption[]{eOption.ID, eOption.Type, eOption.Length, eOption.Checksum});
 
 		for(eOption e: opts)
 			if(!message().hasOption(e)){

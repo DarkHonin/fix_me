@@ -10,9 +10,11 @@ import sim.NetWorker;
 import sim.NetWorker.NetAcceptor;
 import java.util.Random;
 
+import message.FixMessage;
 import message.IDOption;
-import message.Messages.HandshakeMessage;
+import message.TypeOption;
 import message.Option.eOption;
+import message.TypeOption.MessageType;
 
 public class Router implements NetCatchAcceptor, NetAcceptor {
 	NetCatchWorker brokerWorker, marketWorker;
@@ -48,9 +50,14 @@ public class Router implements NetCatchAcceptor, NetAcceptor {
 			NetWorker c = new NetWorker(ch);
 			c.start();
 			c.setAcceptor(this);
-			HandshakeMessage handshake = new HandshakeMessage();
+			FixMessage handshake = new FixMessage();
+
 			IDOption o = handshake.getOption(eOption.ID);
 			o.setID(id);
+
+			TypeOption tp = handshake.getOption(eOption.Type);
+			tp.setType(MessageType.Handshake);
+
 			handshake.validate();
 			c.send(handshake.toString());
 			if (instance == brokerWorker) {

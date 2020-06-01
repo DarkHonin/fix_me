@@ -1,51 +1,42 @@
 package message;
 
-import java.nio.ByteBuffer;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
 
 import message.Option.eOption;
-import message.TypeOption.MessageType;
 
-public abstract class FixMessage {
+public class FixMessage {
 	// TODO Fix message <-> String <-> NetWorker
 
-	Option[] options;
+	Option[] options = new Option[eOption.values().length];
 
-	public FixMessage(MessageType t, Option ...opts){
-		this.options = new Option[Option.eOption.values().length];
-
-
-
-		if(opts != null && opts.length > 0)
-			for(Option e: options)
-				if(e != null)
-					setOption(e);
-
-		if(!hasOption(eOption.ID)) this.setOption(new IDOption());
-		if(!hasOption(eOption.Type)) this.setOption(new TypeOption(t));
-		if(!hasOption(eOption.Length)) this.setOption(new LengthOption());
-		if(!hasOption(eOption.Checksum)) this.setOption(new ChecksumOption());
+	public FixMessage(){
+		setOption(new IDOption());
+		setOption(new TypeOption());
+		setOption(new LengthOption());
+		setOption(new ChecksumOption());
 	}
 
-	public void setOption(Option e){
-		System.out.println("Message option: " + e.option);
-		this.options[e.option.ordinal()] = e;
-		e.setMessage(this);
+	public FixMessage(String s){
+		setOption(new IDOption());
+		setOption(new TypeOption());
+		setOption(new LengthOption());
+		setOption(new ChecksumOption());
+		fromString(s);
+	}
+
+	void setOption(Option o){
+		options[o.option.ordinal()] = o;
+		o.setMessage(this);
 	}
 
 
 	public <T extends Option> T getOption(eOption type){
-		Option t = options[type.ordinal()];
-		return (T) t;
+		Object t = options[type.ordinal()];
+		if(t instanceof Option)
+			return (T) t;
+		else
+			return null;
 	}
 
 
@@ -89,9 +80,7 @@ public abstract class FixMessage {
 	}
 
 	public boolean hasOption(eOption t){
+		if(t.ordinal() >= options.length) return false;
 		return options[t.ordinal()] != null;
 	}
-
-	public abstract eOption[] requiredOptions();
-
 }

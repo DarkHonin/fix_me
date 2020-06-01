@@ -21,10 +21,14 @@ public class App {
         // }
         Router r = new Router();
         Market m = new Market();
+        Broker b = new Broker();
 
 
         r.open();
         m.start();
+        b.start();
+
+        m.sell("Heck", 12);
 
     }
 }

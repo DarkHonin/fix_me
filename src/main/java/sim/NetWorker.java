@@ -18,7 +18,7 @@ public class NetWorker extends SimWorker {
 
 	public NetWorker(SocketChannel chanel) {
 		super(Executors.newSingleThreadExecutor(), "Net");
-		buffer = ByteBuffer.allocate(48);
+		buffer = ByteBuffer.allocate(255);
 		channel = chanel;
 	}
 
@@ -32,7 +32,7 @@ public class NetWorker extends SimWorker {
 			// Listen for messages
 			if (( channel.read(buffer)) != 0) {
 				if(acceptor != null){
-					String str = new String(buffer.array());
+					String str = new String(buffer.array()).trim();
 					System.out.printf("%s : %s : %s\n", acceptor, "Recieved Message ", str);
 					acceptor.acceptMessage(this, str);
 				}

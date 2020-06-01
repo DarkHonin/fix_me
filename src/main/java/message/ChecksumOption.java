@@ -1,9 +1,7 @@
 package message;
 
-import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 
 public class ChecksumOption extends Option {
 
@@ -70,6 +68,7 @@ public class ChecksumOption extends Option {
 		}
 		String actual = hexString(md.digest(getSeed().getBytes()));
 		String expected = hexString(checksum);
+
 
 		return actual.equals(expected);
 	}

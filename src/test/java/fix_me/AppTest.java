@@ -3,7 +3,6 @@ package fix_me;
 import org.junit.Test;
 
 import message.FixMessage;
-import message.Messages.HandshakeMessage;
 import message.Option.eOption;
 import message.TypeOption.MessageType;
 /**
