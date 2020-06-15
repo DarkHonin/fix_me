@@ -38,6 +38,11 @@ public class Market extends FixWorker{
 		FixMessage msg = new FixMessage();
 		((IDOption) msg.getOption(eOption.ID)).setID(getID());
 		((TypeOption) msg.getOption(eOption.Type)).setType(MessageType.Sell);
+
+		// TODO Add instrument, quantity and price to message
+
+
+		msg.validate();
 		getWorker().send(msg.toString());
 	}
 
