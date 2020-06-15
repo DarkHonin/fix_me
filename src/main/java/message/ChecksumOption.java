@@ -24,14 +24,19 @@ public class ChecksumOption extends Option {
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Checksum decoding: "+value);
 		decode(value);
-		System.out.println("Checksum decoded: "+ hexString(checksum));
 	}
 
 	String hexString(byte[] bytes){
 		String ret = "";
-		for(byte b : bytes) ret += String.format("%X", b);
+		for(byte b : bytes) {
+			try{
+				ret += String.format("%X", b);
+			} catch(NullPointerException e){
+				System.out.println(ret);
+				System.exit(-1);
+			}
+		}
 		if(ret.length() % 2 != 0)
 			ret = "0" + ret;
 		return ret;

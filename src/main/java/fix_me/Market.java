@@ -11,7 +11,7 @@ import message.TypeOption.MessageType;
 
 public class Market extends FixWorker{
 
-	HashMap<String, Integer> InstrumentTable;
+	HashMap<String, Integer> InstrumentTable = new HashMap<String, Integer>();
 
 	public Market() {
 		super("Market", 5001);

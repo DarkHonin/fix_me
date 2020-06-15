@@ -28,7 +28,5 @@ public class App {
         m.start();
         b.start();
 
-        m.sell("Heck", 12);
-
     }
 }
