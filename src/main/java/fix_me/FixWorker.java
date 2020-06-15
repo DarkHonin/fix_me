@@ -76,7 +76,7 @@ public abstract class FixWorker extends SimWorker implements NetAcceptor{
 		switch(type.getType()){
 			case Handshake:
 				resp = acceptHandshake(fm);
-				System.out.println("Handshake recieved: ID : " + Integer.toString(ID));
+				System.out.println(this + "Handshake recieved: ID : " + Integer.toString(ID));
 				break;
 
 			case Buy:
